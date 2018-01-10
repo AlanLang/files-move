@@ -1,0 +1,9 @@
+{
+    "version": "1.0.0",
+     "person": "开发者",
+    "basepath":"E:/AntProject",
+    "files":[
+        {"name":"text1.txt","path":""},
+        {"name":"text2.txt","path":"demo"}
+    ]
+}
