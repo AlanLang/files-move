@@ -30,7 +30,7 @@ namespace FilesMove
         public MainWindow()
         {
             InitializeComponent();
-            Msg("请选择安装包");
+            Msg("请选择或拖入安装包");
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -221,5 +221,35 @@ namespace FilesMove
             System.IO.File.AppendAllLines(logFile, new string[] { msg });
         }
 
+        private void Window_Drop(object sender, DragEventArgs e)
+        {
+            string filepath = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
+            string[] filenames = filepath.Split('.');
+            if (filenames[filenames.Length - 1].ToLower() != "zip")
+            {
+                 MessageBox.Show("只可上传zip文件");
+                return;
+            }
+            FileStream fs = new FileStream(filepath, FileMode.Open, FileAccess.Read);
+            bool IsUpLoad = UnLoadZip(fs);
+            if (IsUpLoad)
+            {
+                Msg("压缩包解压成功");
+                try
+                {
+                    MoveFiles();
+                }
+                catch (Exception ex)
+                {
+                    Msg("文件处理异常：" + ex.Message);
+                }
+            }
+        }
+
+        private void TextBox_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            e.Effects = DragDropEffects.Copy;
+            e.Handled = true;
+        }
     }
 }
