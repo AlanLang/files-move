@@ -1,6 +1,6 @@
 # files-move
 批量更新上传的压缩包里面的所有文件，根据一个配置文件来分配目录，如果目标目录里已有该文件则先把文件移动到备份文件夹里，避免丢失原文件。
-[博客地址](http://www.langwenda.cn/2018/01/10/FilesMove%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/#more)
+[博客地址](http://langwenda.cn/acba75b2/#more)
 ## 使用方法
 ### 1. 新建配置文件 `config.json` 配置要移动的文件和目标路径
 ```
